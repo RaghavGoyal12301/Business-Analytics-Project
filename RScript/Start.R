@@ -5,11 +5,14 @@ library(ggplot2)
 data <- read.csv("Data/diabetic_data.csv")
 
 # ---------------Preparing Data---------------
+colnames(data)[c(1, 2, 6:12)] # columns that are being removed
+data <- data[-c(1, 2, 6:12)]
+
 data[data == "?"] <- NA # Replace ? with NA
 str(data) # Show description of data
 
 navals <- is.na(data) # Creates a dataframe (having logical values) for missing data
-# Representing TRUE by 1 and FALSE by 0 
+# Representing TRUE by 1 and FALSE by 0
 navals[navals == TRUE] <- 1
 navals[navals == FALSE] <- 0
 
@@ -30,5 +33,8 @@ p <- ggplot(data = nacount, aes(x = Variables, y = NAcount)) +
   theme_minimal() +
   coord_flip() +
   labs(title = "Plot of Number of NA in a variable",
-  x = "Number of Missing Values", y = "Variable Name")
+  x = "Variable Name", y = "Number of Missing Values")
 p
+
+data$count <- 'count'
+table(data$count, data$race)
