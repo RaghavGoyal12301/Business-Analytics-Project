@@ -36,5 +36,4 @@ p <- ggplot(data = nacount, aes(x = Variables, y = NAcount)) +
   x = "Variable Name", y = "Number of Missing Values")
 p
 
-data$count <- 'count'
-table(data$count, data$race)
+table(data$race)
