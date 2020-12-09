@@ -1,6 +1,4 @@
-library(shiny)
-library(shinyalert)
-
+source(file.path(getwd(), "load_libraries.R"))
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(useShinyalert(),
@@ -209,7 +207,7 @@ ui <- fluidPage(useShinyalert(),
                             ,
 
                             width = 8
-                        ),
+                        )
 
                     )
                 ))
@@ -218,9 +216,7 @@ ui <- fluidPage(useShinyalert(),
 
 # Define server logic required to draw a histogram
 server <- function(input, output, session) {
-  source("App/DiabetesPrediction/readmission_prediction.R")
-  #   rv <- reactiveValues(predeiction_message = NULL)
-  #   rv$predeiction_message <- readmission_prediction(input)
+  source(file.path(getwd(), "readmission_prediction.R"))
   prediction_message <- reactive({ readmission_prediction(input) })
   observeEvent(input$submit, {
     shinyalert(title = "Prediction Results",

@@ -25,11 +25,9 @@ readmission_prediction <- function(input) {
     }
   }
 
-  data_train <- readRDS("App/DiabetesPrediction/data_train.rds")
-  print(table(data_train$race))
+  data_train <- readRDS(file.path(getwd(), "data_train.rds"))
   predict_data <- data_train[, c("time_in_hospital", "num_procedures", "number_diagnoses", "num_lab_procedures", "num_medications", "primary_diagnosis", "secondary_diagnosis", "tertiary_diagnosis", "age", "insulin", "race", "gender")]
   predict_data <- rbind(predict_data, input_data)
-  print(table(predict_data$race))
 
   # for (col in 1:ncol(predict_data)) {
   #   if (is.numeric(predict_data[, col])) {
@@ -39,7 +37,7 @@ readmission_prediction <- function(input) {
   #   }
   # }
 
-  rf_model <- readRDS("App/DiabetesPrediction/rf_model.rds")
+  rf_model <- readRDS(file.path(getwd(), "rf_model.rds"))
   prediction <- predict(rf_model, predict_data[nrow(predict_data),])
 
   if (prediction == 1) {
