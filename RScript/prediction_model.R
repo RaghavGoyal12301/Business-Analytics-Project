@@ -34,20 +34,30 @@ data_train <- ROSE(readmitted ~ ., data = data_train)$data
 data_train$readmitted <- as.factor(data_train$readmitted)
 data_test$readmitted <- as.factor(data_test$readmitted)
 
-rf_model <- randomForest(readmitted ~ ., data = data_train, mtry=12, ntree = 400) #<------Can be Configured for more accuracy
+# rf_model <- randomForest(readmitted ~ time_in_hospital +
+# num_procedures + number_diagnoses + num_lab_procedures +
+# num_medications + primary_diagnosis + secondary_diagnosis +
+# tertiary_diagnosis + age + insulin + race + gender,
+# data = data_train, mtry = 12, ntree = 400) #<------Can be Configured for more accuracy
 
-prd1 <- predict(rf_model, data_train)
-prd2 <- predict(rf_model, data_test)
+# #Saving the model
+# saveRDS(rf_model, file = "App/DiabetesPrediction/rf_model.rds")
+saveRDS(data_train, file = "App/DiabetesPrediction/data_train.rds")
 
-plot(rf_model) # Error rate of Random Forest
 
-confusionMatrix(prd1, data_train$readmitted)
-confusionMatrix(prd2, data_test$readmitted)
+# ------------------------------
+# plot(rf_model) # Error rate of Random Forest and ntree also.
+# varImpPlot(rf_model)
+# # importance(rf_model)
+# varUsed(rf_model)
 
-varImpPlot(rf_model)
-importance(rf_model)
-varUsed(rf_model)
+# prd1 <- predict(rf_model, data_train) # Accuracy = 100%
+# prd2 <- predict(rf_model, data_test) # Accuracy = 74%
 
+# confusionMatrix(prd1, data_train$readmitted)
+# confusionMatrix(prd2, data_test$readmitted)
+# ------------------------------
+# # Calculate mtry for the random forest model
 # t <- tuneRF(data_train[, -41], data_train[, 41],
 #             stepFactor = 0.5,
 #             plot = TRUE,
@@ -55,3 +65,4 @@ varUsed(rf_model)
 #             trace = TRUE,
 #             improve = 0.05
 #             )
+# ------------------------------

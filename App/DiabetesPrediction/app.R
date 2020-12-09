@@ -8,9 +8,9 @@ ui <- fluidPage(useShinyalert(),
                     "Diabetes Prediction",
                     tabPanel(
                         "Diabetes History",
-                        
-                        
-                        # Side Panel - General Information
+
+
+# Side Panel - General Information
                         sidebarPanel(
                             h2("General Information"),
                             textInput(
@@ -20,12 +20,11 @@ ui <- fluidPage(useShinyalert(),
                             ),
                             fluidRow(column(
                                 6,
-                                numericInput(
+                                selectInput(
                                     inputId = "age",
                                     label = "Age",
-                                    value = "0",
-                                    min = 1,
-                                    max = 120
+                                    choices = c("[0-40]", "[40-50]", "[50-60]", "[60-70]", "[70-80]", "[80-100]"),
+                                    selected = "[0-40]"
                                 )
                             ),
                             column(
@@ -33,26 +32,25 @@ ui <- fluidPage(useShinyalert(),
                                 selectInput(
                                     inputId = "gender",
                                     label = "Gender",
-                                    choices = list("Male" = 1, "Female" = 2),
-                                    selected = 1
+                                    choices = c("Male", "Female"),
+                                    selected = "Male"
                                 )
-                                
+
                             )),
-                            
+
                             selectInput(
                                 inputId = "race",
                                 label = "Race",
-                                choices = list(
-                                    "American" = 1,
-                                    "African-American" = 2,
-                                    "Asian" = 3,
-                                    "Caucasian" = 4,
-                                    "Hispanic" = 5,
-                                    "Other" = 6
+                                choices = c(
+                                    "AfricanAmerican",
+                                    "Asian",
+                                    "Caucasian",
+                                    "Hispanic",
+                                    "Other"
                                 ),
-                                selected = 1
+                                selected = "AfricanAmerican"
                             ),
-                            
+
                             h2("Physical Information"),
                             fluidRow(column(
                                 6,
@@ -74,12 +72,12 @@ ui <- fluidPage(useShinyalert(),
                                     max = 250
                                 )
                             ))
-                            
+
                         ),
-                        
-                        
-                        
-                        # Main Panel - Important Data
+
+
+
+# Main Panel - Important Data
                         mainPanel(
                             h2("Diabetes Data"),
                             fluidRow(column(
@@ -137,17 +135,17 @@ ui <- fluidPage(useShinyalert(),
                                 selectInput(
                                     inputId = "primary_diagnosis",
                                     label = "Primary Diagnosis",
-                                    choices = list(
-                                        "Circulatory" = 1,
-                                        "Respiratory" = 2,
-                                        "Digestive" = 3,
-                                        "Genitourinary" = 4,
-                                        "Neoplasms" = 5,
-                                        "Musculoskeletal" = 6,
-                                        "Injury" = 7,
-                                        "Other" = 8
+                                    choices = c(
+                                        "Circulatory",
+                                        "Respiratory",
+                                        "Digestive",
+                                        "Genitourinary",
+                                        "Neoplasms",
+                                        "Musculoskeletal",
+                                        "Injury",
+                                        "Other"
                                     ),
-                                    selected = 1
+                                    selected = "Circulatory"
                                 )
                             ))
                             ,
@@ -156,17 +154,17 @@ ui <- fluidPage(useShinyalert(),
                                 selectInput(
                                     inputId = "secondary_diagnosis",
                                     label = "Secondary Diagnosis",
-                                    choices = list(
-                                        "Circulatory" = 1,
-                                        "Respiratory" = 2,
-                                        "Digestive" = 3,
-                                        "Genitourinary" = 4,
-                                        "Neoplasms" = 5,
-                                        "Musculoskeletal" = 6,
-                                        "Injury" = 7,
-                                        "Other" = 8
+                                    choices = c(
+                                        "Circulatory",
+                                        "Respiratory",
+                                        "Digestive",
+                                        "Genitourinary",
+                                        "Neoplasms",
+                                        "Musculoskeletal",
+                                        "Injury",
+                                        "Other"
                                     ),
-                                    selected = 1
+                                    selected = "Circulatory"
                                 )
                             ),
                             column(
@@ -174,17 +172,17 @@ ui <- fluidPage(useShinyalert(),
                                 selectInput(
                                     inputId = "tertiary_diagnosis",
                                     label = "Tertiary Diagnosis",
-                                    choices = list(
-                                        "Circulatory" = 1,
-                                        "Respiratory" = 2,
-                                        "Digestive" = 3,
-                                        "Genitourinary" = 4,
-                                        "Neoplasms" = 5,
-                                        "Musculoskeletal" = 6,
-                                        "Injury" = 7,
-                                        "Other" = 8
+                                    choices = c(
+                                        "Circulatory",
+                                        "Respiratory",
+                                        "Digestive",
+                                        "Genitourinary",
+                                        "Neoplasms",
+                                        "Musculoskeletal",
+                                        "Injury",
+                                        "Other"
                                     ),
-                                    selected = 1
+                                    selected = "Circulatory"
                                 )
                             ))
                             ,
@@ -193,26 +191,26 @@ ui <- fluidPage(useShinyalert(),
                                 selectInput(
                                     inputId = "insulin",
                                     label = "Insulin",
-                                    choices = list(
-                                        "Up" = 1,
-                                        "Down" = 2,
-                                        "Steady" = 3,
-                                        "No" = 4
+                                    choices = c(
+                                        "Up",
+                                        "Down",
+                                        "Steady",
+                                        "No"
                                     ),
-                                    selected = 4
+                                    selected = "No"
                                 )
                             )),
                             fluidRow(column(4,
                                             actionButton(
                                                 "submit", "Predict", width = 200
                                             ), offset = 3)
-                                     
+
                                      )
                             ,
-                            
+
                             width = 8
                         ),
-                        
+
                     )
                 ))
 
@@ -220,14 +218,16 @@ ui <- fluidPage(useShinyalert(),
 
 # Define server logic required to draw a histogram
 server <- function(input, output, session) {
-    observeEvent(input$submit, {
-        shinyalert(title = "Congratulations",
-                   text = "You are not going to be readmitted",
-                   type = "success")
-    })
-    
-    
-    
+  source("App/DiabetesPrediction/readmission_prediction.R")
+  #   rv <- reactiveValues(predeiction_message = NULL)
+  #   rv$predeiction_message <- readmission_prediction(input)
+  prediction_message <- reactive({ readmission_prediction(input) })
+  observeEvent(input$submit, {
+    shinyalert(title = "Prediction Results",
+                   text = prediction_message(),
+                   type = "info")
+  })
+
 }
 
 # Run the application
