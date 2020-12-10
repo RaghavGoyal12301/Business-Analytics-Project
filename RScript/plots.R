@@ -15,22 +15,22 @@ generatePlots <- function(output) {
     }
   }
   variable_importance_plot <- ggplot(varImp(rf_model), aes(x = rownames(varImp(rf_model)), y = Overall)) + labs(title = "Variable Importance Chart\n", x = "Important_Variables", y = "Importance")
-  variable_importance_plot <- variable_importance_plot + geom_bar(stat = "identity", fill = "#34626c", width = 0.5) + coord_flip() + theme_light()
+  output$variable_importance_plot <- renderPlot(variable_importance_plot + geom_bar(stat = "identity", fill = "#34626c", width = 0.5) + coord_flip() + theme_light())
 
-  num_procedures_plot <- ggplot(data, aes(x = num_procedures, group = readmitted, fill = readmitted)) +
-  geom_histogram(position = "identity", alpha = 0.8, binwidth = 1) + theme_bw()
+  output$num_procedures_plot <- renderPlot(ggplot(data, aes(x = num_procedures, group = readmitted, fill = readmitted)) +
+  geom_histogram(position = "identity", alpha = 0.8, binwidth = 1) + theme_bw())
 
-  time_in_hopital_plot <- ggplot(data, aes(x = time_in_hospital, group = readmitted, fill = readmitted)) +
-  geom_histogram(position = "identity", alpha = 0.8, binwidth = 1) + theme_bw()
+  output$time_in_hopital_plot <- renderPlot(ggplot(data, aes(x = time_in_hospital, group = readmitted, fill = readmitted)) +
+  geom_histogram(position = "identity", alpha = 0.8, binwidth = 1) + theme_bw())
 
-  number_diagnoses_plot <- ggplot(data, aes(number_diagnoses, group = readmitted, fill = readmitted)) +
-  geom_histogram(position = "identity", alpha = 0.8, binwidth = 1) + theme_bw()
+  output$number_diagnoses_plot <- renderPlot(ggplot(data, aes(number_diagnoses, group = readmitted, fill = readmitted)) +
+  geom_histogram(position = "identity", alpha = 0.8, binwidth = 1) + theme_bw())
 
-  num_lab_procedures_plot <- ggplot(data, aes(num_lab_procedures, group = readmitted, fill = readmitted)) +
-  geom_histogram(position = "identity", alpha = 0.8, binwidth = 1) + theme_bw()
+  output$num_lab_procedures_plot <- renderPlot(ggplot(data, aes(num_lab_procedures, group = readmitted, fill = readmitted)) +
+  geom_histogram(position = "identity", alpha = 0.8, binwidth = 1) + theme_bw())
 
-  num_medications_plot <- ggplot(data, aes(num_medications, group = readmitted, fill = readmitted)) +
-  geom_histogram(position = "identity", alpha = 0.8, binwidth = 1) + theme_bw()
+  output$num_medications_plot <- renderPlot(ggplot(data, aes(num_medications, group = readmitted, fill = readmitted)) +
+  geom_histogram(position = "identity", alpha = 0.8, binwidth = 1) + theme_bw())
 
 
   return(output)
