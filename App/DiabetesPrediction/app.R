@@ -1,5 +1,6 @@
 source(file.path(getwd(), "load_libraries.R"))
 library(shinythemes)
+library(shinydashboard)
 
 
 # Define UI for application that draws a histogram
@@ -220,47 +221,58 @@ ui <- fluidPage(
       )
       
     ),
-    tabPanel("Information",
-             sidebarPanel(
-               br(),
-               h2("Variable Importance Plot")
-             ),
-             mainPanel(
-               tabsetPanel(
-                 type = "tabs",
-                 tabPanel("1",
-                          mainPanel(
-                            br(), br(),
-                            plotOutput(outputId = "variable_importance_plot")
-                          )),
-                 tabPanel("2",
-                          mainPanel(
-                            br(), br(),
-                            plotOutput(outputId = "num_procedures_plot")
-                          )),
-                 tabPanel("3",
-                          mainPanel(
-                            br(), br(),
-                            plotOutput(outputId = "time_in_hopital_plot")
-                          )),
-                 tabPanel("4",
-                          mainPanel(
-                            br(), br(),
-                            plotOutput(outputId = "number_diagnoses_plot")
-                          )),
-                 tabPanel("5",
-                          mainPanel(
-                            br(), br(),
-                            plotOutput(outputId = "num_lab_procedures_plot")
-                          )),
-                 tabPanel("6",
-                          mainPanel(
-                            br(), br(),
-                            plotOutput(outputId = "num_medications_plot")
-                            
-                          ))
-               )
-             ))
+    tabPanel(
+      "Information",
+      tabsetPanel(
+        type = "tabs",
+        tabPanel("1",
+                 br(),
+                 sidebarPanel(
+                   h2("Variable Importance Plot"),
+                   p(
+                     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+                   )
+                 ),
+                 mainPanel(box(
+                   plotOutput(outputId = "variable_importance_plot")
+                 ))),
+        tabPanel("2", br(),
+                 sidebarPanel(h2(
+                   "Number of Procedures Plot"
+                 )),
+                 mainPanel(box(
+                   plotOutput(outputId = "num_procedures_plot")
+                 ))),
+        tabPanel("3", br(),
+                 sidebarPanel(h2(
+                   "Time in Hopital Plot"
+                 )),
+                 mainPanel(box(
+                   plotOutput(outputId = "time_in_hopital_plot")
+                 ))),
+        tabPanel("4", br(),
+                 sidebarPanel(h2(
+                   "Number of Diagnosis Plot"
+                 )),
+                 mainPanel(box(
+                   plotOutput(outputId = "number_diagnoses_plot")
+                 ))),
+        tabPanel("5", br(),
+                 sidebarPanel(h2(
+                   "Number of Lab Procedures Plot"
+                 )),
+                 mainPanel(box(
+                   plotOutput(outputId = "num_lab_procedures_plot")
+                 ))),
+        tabPanel("6", br(),
+                 sidebarPanel(h2(
+                   "Number of Medications Plot"
+                 )),
+                 mainPanel(box(
+                   plotOutput(outputId = "num_medications_plot")
+                 )))
+      )
+    )
   )
 )
 
