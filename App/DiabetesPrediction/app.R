@@ -223,6 +223,8 @@ server <- function(input, output, session) {
                    text = prediction_message(),
                    type = "info")
   })
+  generatePlots <- readRDS(file.path(getwd(), "generatePlots.rds"))
+  output <- generatePlots(output)
 
 }
 

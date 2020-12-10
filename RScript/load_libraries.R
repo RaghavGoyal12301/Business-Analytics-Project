@@ -5,8 +5,9 @@
 # install.packages("randomForest")
 # install.packages("caret")
 # install.packages("e1071")
-
-
+# install.packages("ROSE")
+# install.packages("ggplot2")
+# install.packages(c("tm", "SnowballC", "wordcloud", "RColorBrewer", "RCurl", "XML"))
 
 
 # ------------------------------Load Libraries------------------------------
@@ -18,3 +19,10 @@ library(caret)
 library(ROSE)
 library(shiny)
 library(shinyalert)
+library(ggplot2)
+library(tm)
+library(SnowballC)
+library(wordcloud)
+library(RCurl)
+library(XML)
+library(RColorBrewer)
