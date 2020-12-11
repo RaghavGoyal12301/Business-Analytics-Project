@@ -1,0 +1,12 @@
+name: HolaBola
+title: HolaBola
+username:
+account: holabola
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3386436
+bundleId: 3973196
+url: https://holabola.shinyapps.io/HolaBola/
+when: 1607645868.16346
+asMultiple: FALSE
+asStatic: FALSE
