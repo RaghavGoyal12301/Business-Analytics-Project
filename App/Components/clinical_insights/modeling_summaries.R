@@ -2,14 +2,21 @@ modeling_summaries <- function(output) {
   output$modeling_summaries1 <- renderUI({
     div(
       br(),
-      splitLayout(
-        div(),
-        plotOutput(outputId = "variable_importance1"),
-        div(),
-        plotOutput(outputId = "rf_model42_plot1"),
-        div(),
-        cellWidths = c("5%", "53%", "4%", "33%", "5%")
-      ),
+      # splitLayout(
+      #   div(),
+      #   imageOutput(outputId = "variable_importance1"),
+      #   div(),
+      #   imageOutput(outputId = "rf_model42_plot1"),
+      #   div(),
+      #   cellWidths = c("5%", "53%", "4%", "33%", "5%")
+      # ),
+      # splitLayout(
+      #   div(),
+      #   imageOutput(outputId = "variable_importance1"),
+      #   div(),
+      #   cellWidths = c("10%", "80%", "10%")
+      # ),
+      imageOutput(outputId = "variable_importance1"),
       br(),
       br()
     )
@@ -20,15 +27,15 @@ modeling_summaries <- function(output) {
       br(),
       column(3,
         align = "center",
-        plotOutput(outputId = "variable_importance2")
+        imageOutput(outputId = "variable_importance2")
       ),
       br(),
       br(),
-      column(3,
-             align = "center",
-             plotOutput(outputId = "rf_model42_plot2")),
-      br(),
-      br()
+      # column(3,
+      #        align = "center",
+      #        imageOutput(outputId = "rf_model42_plot2")),
+      # br(),
+      # br()
     ))
   })
   return(output)

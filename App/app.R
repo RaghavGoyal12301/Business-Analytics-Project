@@ -63,9 +63,16 @@ server <- function(input, output, session) {
     readmission_prediction(input)
   })
   observeEvent(input$submit, {
+    prediction_message_text <- prediction_message()
+    if(prediction_message_text == "Patient will not be re-admitted in 30 days."){
+      prediction_type = "success"
+    }else{
+      prediction_type = "info"
+    }
+
     shinyalert(title = "Prediction Results",
-               text = prediction_message(),
-               type = "info")
+               text = prediction_message_text,
+               type = prediction_type)
   })
   # -------------RenderUI
 

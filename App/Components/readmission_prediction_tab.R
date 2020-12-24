@@ -139,6 +139,7 @@ readmission_prediction_tab <- function(output) {
             inputId = "primary_diagnosis",
             label = "Primary Diagnosis",
             choices = c(
+              "Diabetes",
               "Circulatory",
               "Respiratory",
               "Digestive",
@@ -157,6 +158,7 @@ readmission_prediction_tab <- function(output) {
             inputId = "secondary_diagnosis",
             label = "Secondary Diagnosis",
             choices = c(
+              "Diabetes",
               "Circulatory",
               "Respiratory",
               "Digestive",
@@ -175,6 +177,7 @@ readmission_prediction_tab <- function(output) {
             inputId = "tertiary_diagnosis",
             label = "Tertiary Diagnosis",
             choices = c(
+              "Diabetes",
               "Circulatory",
               "Respiratory",
               "Digestive",

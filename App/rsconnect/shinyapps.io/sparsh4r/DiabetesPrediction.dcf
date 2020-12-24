@@ -5,8 +5,8 @@ account: sparsh4r
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 3378535
-bundleId: 3973143
+bundleId: 4025131
 url: https://sparsh4r.shinyapps.io/DiabetesPrediction/
-when: 1607645013.61799
+when: 1608797893.33264
 asMultiple: FALSE
 asStatic: FALSE

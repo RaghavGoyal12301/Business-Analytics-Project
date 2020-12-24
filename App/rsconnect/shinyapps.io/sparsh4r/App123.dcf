@@ -1,0 +1,12 @@
+name: App123
+title: App123
+username:
+account: sparsh4r
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3388366
+bundleId: 3974983
+url: https://sparsh4r.shinyapps.io/App123/
+when: 1607687938.23867
+asMultiple: FALSE
+asStatic: FALSE
